@@ -162,3 +162,23 @@
 }
 .animate-float { animation: float 6s ease-in-out infinite; }
 .animate-pulse-ring { animation: pulse-ring 2s ease-out infinite; }
+
+/* =========================================
+   HERO BACKGROUND HEARTBEAT ZOOM ANIMATION
+   ========================================= */
+
+   .hero-heartbeat {
+    animation: continuousHeartbeat 2s ease-in-out infinite alternate;
+    transform-origin: center center;
+    will-change: transform;
+  }
+  
+  @keyframes continuousHeartbeat {
+    from {
+      transform: scale(1);
+    }
+  
+    to {
+      transform: scale(1.10);
+    }
+  }

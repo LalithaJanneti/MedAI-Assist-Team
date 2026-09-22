@@ -9,31 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SymptomAnalyzerRouteImport } from './routes/symptom-analyzer'
-import { Route as ReportsRouteImport } from './routes/reports'
-import { Route as RecoveryRouteImport } from './routes/recovery'
-import { Route as DoctorDashboardRouteImport } from './routes/doctor-dashboard'
-import { Route as AppointmentRouteImport } from './routes/appointment'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppointmentRouteImport } from './routes/appointment'
+import { Route as DoctorDashboardRouteImport } from './routes/doctor-dashboard'
+import { Route as RecoveryRouteImport } from './routes/recovery'
+import { Route as ReportsRouteImport } from './routes/reports'
+import { Route as SymptomAnalyzerRouteImport } from './routes/symptom-analyzer'
 
-const SymptomAnalyzerRoute = SymptomAnalyzerRouteImport.update({
-  id: '/symptom-analyzer',
-  path: '/symptom-analyzer',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ReportsRoute = ReportsRouteImport.update({
-  id: '/reports',
-  path: '/reports',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RecoveryRoute = RecoveryRouteImport.update({
-  id: '/recovery',
-  path: '/recovery',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DoctorDashboardRoute = DoctorDashboardRouteImport.update({
-  id: '/doctor-dashboard',
-  path: '/doctor-dashboard',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppointmentRoute = AppointmentRouteImport.update({
@@ -41,9 +26,24 @@ const AppointmentRoute = AppointmentRouteImport.update({
   path: '/appointment',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const DoctorDashboardRoute = DoctorDashboardRouteImport.update({
+  id: '/doctor-dashboard',
+  path: '/doctor-dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecoveryRoute = RecoveryRouteImport.update({
+  id: '/recovery',
+  path: '/recovery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SymptomAnalyzerRoute = SymptomAnalyzerRouteImport.update({
+  id: '/symptom-analyzer',
+  path: '/symptom-analyzer',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -110,32 +110,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/symptom-analyzer': {
-      id: '/symptom-analyzer'
-      path: '/symptom-analyzer'
-      fullPath: '/symptom-analyzer'
-      preLoaderRoute: typeof SymptomAnalyzerRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/reports': {
-      id: '/reports'
-      path: '/reports'
-      fullPath: '/reports'
-      preLoaderRoute: typeof ReportsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/recovery': {
-      id: '/recovery'
-      path: '/recovery'
-      fullPath: '/recovery'
-      preLoaderRoute: typeof RecoveryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/doctor-dashboard': {
-      id: '/doctor-dashboard'
-      path: '/doctor-dashboard'
-      fullPath: '/doctor-dashboard'
-      preLoaderRoute: typeof DoctorDashboardRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/appointment': {
@@ -145,11 +124,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppointmentRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/doctor-dashboard': {
+      id: '/doctor-dashboard'
+      path: '/doctor-dashboard'
+      fullPath: '/doctor-dashboard'
+      preLoaderRoute: typeof DoctorDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recovery': {
+      id: '/recovery'
+      path: '/recovery'
+      fullPath: '/recovery'
+      preLoaderRoute: typeof RecoveryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/symptom-analyzer': {
+      id: '/symptom-analyzer'
+      path: '/symptom-analyzer'
+      fullPath: '/symptom-analyzer'
+      preLoaderRoute: typeof SymptomAnalyzerRouteImport
       parentRoute: typeof rootRouteImport
     }
   }

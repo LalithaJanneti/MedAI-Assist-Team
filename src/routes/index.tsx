@@ -8,8 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
-import heroImg from "@/assets/hero-health.jpg";
-
+//import heroImg from "@/assets/hero-health.jpg";
+import heroImg from "@/assets/hero-home-reference.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -40,7 +40,7 @@ function Landing() {
   );
 }
 
-function Hero() {
+/*function Hero() {
   return (
     <section className="relative overflow-hidden bg-hero-gradient">
       <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-secondary/20 blur-3xl" />
@@ -111,7 +111,20 @@ function Hero() {
       </div>
     </section>
   );
-}
+} */
+  function Hero() {
+    return (
+      <section className="relative w-full overflow-hidden bg-white">
+        <div className="relative w-full overflow-hidden">
+          <img
+            src={heroImg}
+            alt="AI-powered healthcare with human organs and heart health monitoring"
+            className="hero-heartbeat block h-auto w-full"
+          />
+        </div>
+      </section>
+    );
+  }
 
 function HowItWorks() {
   const steps = [
