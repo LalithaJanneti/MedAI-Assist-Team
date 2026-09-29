@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppointmentRouteImport } from './routes/appointment'
 import { Route as DoctorDashboardRouteImport } from './routes/doctor-dashboard'
+import { Route as DoctorsRouteImport } from './routes/doctors'
 import { Route as RecoveryRouteImport } from './routes/recovery'
 import { Route as ReportsRouteImport } from './routes/reports'
 import { Route as SymptomAnalyzerRouteImport } from './routes/symptom-analyzer'
@@ -29,6 +30,11 @@ const AppointmentRoute = AppointmentRouteImport.update({
 const DoctorDashboardRoute = DoctorDashboardRouteImport.update({
   id: '/doctor-dashboard',
   path: '/doctor-dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DoctorsRoute = DoctorsRouteImport.update({
+  id: '/doctors',
+  path: '/doctors',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RecoveryRoute = RecoveryRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/appointment': typeof AppointmentRoute
   '/doctor-dashboard': typeof DoctorDashboardRoute
+  '/doctors': typeof DoctorsRoute
   '/recovery': typeof RecoveryRoute
   '/reports': typeof ReportsRoute
   '/symptom-analyzer': typeof SymptomAnalyzerRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/appointment': typeof AppointmentRoute
   '/doctor-dashboard': typeof DoctorDashboardRoute
+  '/doctors': typeof DoctorsRoute
   '/recovery': typeof RecoveryRoute
   '/reports': typeof ReportsRoute
   '/symptom-analyzer': typeof SymptomAnalyzerRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/appointment': typeof AppointmentRoute
   '/doctor-dashboard': typeof DoctorDashboardRoute
+  '/doctors': typeof DoctorsRoute
   '/recovery': typeof RecoveryRoute
   '/reports': typeof ReportsRoute
   '/symptom-analyzer': typeof SymptomAnalyzerRoute
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
     | '/'
     | '/appointment'
     | '/doctor-dashboard'
+    | '/doctors'
     | '/recovery'
     | '/reports'
     | '/symptom-analyzer'
@@ -86,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/appointment'
     | '/doctor-dashboard'
+    | '/doctors'
     | '/recovery'
     | '/reports'
     | '/symptom-analyzer'
@@ -94,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/appointment'
     | '/doctor-dashboard'
+    | '/doctors'
     | '/recovery'
     | '/reports'
     | '/symptom-analyzer'
@@ -103,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppointmentRoute: typeof AppointmentRoute
   DoctorDashboardRoute: typeof DoctorDashboardRoute
+  DoctorsRoute: typeof DoctorsRoute
   RecoveryRoute: typeof RecoveryRoute
   ReportsRoute: typeof ReportsRoute
   SymptomAnalyzerRoute: typeof SymptomAnalyzerRoute
@@ -129,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/doctor-dashboard'
       fullPath: '/doctor-dashboard'
       preLoaderRoute: typeof DoctorDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/doctors': {
+      id: '/doctors'
+      path: '/doctors'
+      fullPath: '/doctors'
+      preLoaderRoute: typeof DoctorsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/recovery': {
@@ -159,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppointmentRoute: AppointmentRoute,
   DoctorDashboardRoute: DoctorDashboardRoute,
+  DoctorsRoute: DoctorsRoute,
   RecoveryRoute: RecoveryRoute,
   ReportsRoute: ReportsRoute,
   SymptomAnalyzerRoute: SymptomAnalyzerRoute,

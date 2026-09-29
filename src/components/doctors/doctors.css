@@ -1,0 +1,42 @@
+/* MedAI Assist — Doctors page styles (animations + a few reusable looks) */
+@keyframes dr-fade-up { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes dr-float {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(var(--r, 0deg)); }
+  50% { transform: translate3d(0, -20px, 0) rotate(calc(var(--r, 0deg) + 6deg)); }
+}
+@keyframes dr-ecg { 0% { stroke-dashoffset: 1400; } 60% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -1400; } }
+@keyframes dr-pop { 0% { transform: scale(.6); opacity: 0; } 60% { transform: scale(1.08); opacity: 1; } 100% { transform: scale(1); } }
+@keyframes dr-ping { 75%, 100% { transform: scale(2.4); opacity: 0; } }
+
+/* "backwards" fill so hover transforms still work after the entrance ends */
+.dr-fade-up { animation: dr-fade-up .7s cubic-bezier(.22, 1, .36, 1) backwards; }
+.dr-card-in { animation: dr-fade-up .55s cubic-bezier(.22, 1, .36, 1) backwards; }
+.dr-view-in { animation: dr-fade-up .45s cubic-bezier(.22, 1, .36, 1) backwards; }
+.dr-float { animation: dr-float var(--d, 9s) ease-in-out var(--delay, 0s) infinite; }
+.dr-ecg-line { stroke-dasharray: 1400; stroke-dashoffset: 1400; animation: dr-ecg 7s linear infinite; }
+.dr-pop { animation: dr-pop .6s cubic-bezier(.22, 1, .36, 1) both; }
+.dr-ping { animation: dr-ping 1.6s cubic-bezier(0, 0, .2, 1) infinite; }
+
+.dr-grad-text {
+  background: linear-gradient(90deg, #1e3a8a 0%, #2563eb 50%, #0ea5e9 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+.dr-grad-soft { background: linear-gradient(135deg, #e0f2fe 0%, #ffffff 50%, #dbeafe 100%); }
+
+.dr-btn-primary, .dr-btn-ghost {
+  display: inline-flex; align-items: center; justify-content: center; gap: .375rem;
+  border-radius: .875rem; font-weight: 600; white-space: nowrap;
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease, background-color .2s ease, border-color .2s ease;
+}
+.dr-btn-primary { background: linear-gradient(135deg, #2563eb, #0284c7); color: #fff; box-shadow: 0 8px 20px -8px rgba(37, 99, 235, .55); }
+.dr-btn-primary:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 14px 26px -10px rgba(37, 99, 235, .65); filter: brightness(1.06); }
+.dr-btn-ghost { background: #fff; color: #1d4ed8; border: 1px solid #bae6fd; }
+.dr-btn-ghost:hover:not(:disabled) { transform: translateY(-2px); background: #f0f9ff; border-color: #7dd3fc; }
+.dr-btn-primary:disabled, .dr-btn-ghost:disabled { opacity: .5; cursor: not-allowed; box-shadow: none; }
+.dr-btn-primary:focus-visible, .dr-btn-ghost:focus-visible { outline: 3px solid #93c5fd; outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .dr-fade-up, .dr-card-in, .dr-view-in, .dr-float, .dr-ecg-line, .dr-pop, .dr-ping { animation: none !important; }
+  .dr-ecg-line { stroke-dashoffset: 0; }
+}

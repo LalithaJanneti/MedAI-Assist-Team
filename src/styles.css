@@ -182,3 +182,351 @@
       transform: scale(1.10);
     }
   }
+  /* =========================================
+   MEDAI ASSIST HERO
+========================================= */
+
+.medai-hero {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Slowly zoom the background itself */
+.medai-hero::before {
+  content: "";
+  position: absolute;
+  inset: -3%;
+  z-index: 0;
+
+  background: inherit;
+  background-position: center;
+  background-size: cover;
+
+  animation: medicalBackgroundPulse 8s ease-in-out infinite;
+  transform-origin: center center;
+  pointer-events: none;
+}
+
+/* Keep content above the background */
+.medai-hero > * {
+  position: relative;
+}
+
+
+/* =========================================
+   HEART / AI PULSE
+========================================= */
+
+.heart-pulse {
+  animation: heartPulse 2.8s ease-in-out infinite;
+}
+
+.heart-pulse-delay {
+  animation: heartPulse 2.8s ease-in-out infinite;
+  animation-delay: 1.2s;
+}
+
+
+/* =========================================
+   FLOATING HEALTH CARDS
+========================================= */
+
+.health-insight-card {
+  animation: floatingCard 5s ease-in-out infinite;
+}
+
+.health-insight-card:nth-of-type(2) {
+  animation-delay: 1s;
+}
+
+.health-insight-card:nth-of-type(3) {
+  animation-delay: 2s;
+}
+
+.health-insight-card:nth-of-type(4) {
+  animation-delay: 3s;
+}
+
+
+/* =========================================
+   AI PARTICLES
+========================================= */
+
+.ai-particle {
+  position: absolute;
+  z-index: 5;
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 9999px;
+
+  background: rgba(6, 182, 212, 0.6);
+
+  box-shadow:
+    0 0 12px rgba(6, 182, 212, 0.7),
+    0 0 25px rgba(6, 182, 212, 0.35);
+
+  animation: particleFloat 4s ease-in-out infinite;
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes medicalBackgroundPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.035);
+  }
+}
+
+
+@keyframes heartPulse {
+
+  0% {
+    transform: scale(0.9);
+    opacity: 0.2;
+  }
+
+  45% {
+    transform: scale(1.05);
+    opacity: 0.55;
+  }
+
+  60% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+
+  100% {
+    transform: scale(0.9);
+    opacity: 0.2;
+  }
+}
+
+
+@keyframes floatingCard {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+
+@keyframes particleFloat {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+    opacity: 0.3;
+  }
+
+  50% {
+    transform: translateY(-18px);
+    opacity: 1;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+  .medai-hero {
+    background-position: center;
+    background-size: cover;
+  }
+
+  .medai-hero::before {
+    animation: none;
+  }
+
+  .health-insight-card {
+    position: relative !important;
+    inset: auto !important;
+    width: 100%;
+    max-width: 280px;
+    margin-top: 12px;
+  }
+
+  .heart-pulse,
+  .heart-pulse-delay {
+    display: none;
+  }
+
+  .ai-particle {
+    display: none;
+  }
+}
+
+
+/* =========================================
+   REDUCE MOTION ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .medai-hero::before,z
+  .health-insight-card,
+  .heart-pulse,
+  .heart-pulse-delay,
+  .ai-particle {
+    animation: none;
+  }
+}/* =====================================================
+   MEDAI ASSIST HERO ANIMATIONS
+   ===================================================== */
+
+/* Heartbeat zoom animation */
+@keyframes heartBeatZoom {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  15% {
+    transform: translate(-50%, -50%) scale(1.035);
+  }
+
+  30% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  45% {
+    transform: translate(-50%, -50%) scale(1.025);
+  }
+
+  60% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/*
+   This overlay creates a subtle pulse over
+   the heart area without moving the whole page.
+*/
+.heart-pulse {
+  animation: heartBeatZoom 2.2s ease-in-out infinite;
+
+  background-image: url("/src/assets/heart.png");
+  background-size: 100vw auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  opacity: 0.22;
+
+  filter: drop-shadow(0 0 25px rgba(34, 211, 238, 0.25));
+
+  pointer-events: none;
+
+  /* Only the center/heart area is visible */
+  clip-path: circle(42% at 50% 50%);
+}
+
+
+/* Hero badge entrance */
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-badge {
+  animation: heroFadeUp 0.8s ease-out both;
+}
+
+
+/* Heading */
+.hero-title {
+  animation: heroFadeUp 1s ease-out 0.15s both;
+}
+
+
+/* Paragraph */
+.hero-text {
+  animation: heroFadeUp 1s ease-out 0.3s both;
+}
+
+
+/* Creative sentence */
+.hero-subtitle {
+  animation: heroFadeUp 1s ease-out 0.45s both;
+}
+
+
+/* Buttons */
+.hero-buttons {
+  animation: heroFadeUp 1s ease-out 0.6s both;
+}
+
+
+/* Small floating medical dots */
+@keyframes floatingSmall {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.65;
+  }
+
+  50% {
+    transform: translateY(-12px);
+    opacity: 1;
+  }
+}
+
+.floating-dot {
+  animation: floatingSmall 3s ease-in-out infinite;
+}
+
+.floating-dot-delay {
+  animation: floatingSmall 3.5s ease-in-out 0.5s infinite;
+}
+
+
+/* Mobile */
+@media (max-width: 768px) {
+  .heart-pulse {
+    width: 280px;
+    height: 280px;
+    background-size: auto 100%;
+  }
+}
+
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .heart-pulse,
+  .hero-badge,
+  .hero-title,
+  .hero-text,
+  .hero-subtitle,
+  .hero-buttons,
+  .floating-dot,
+  .floating-dot-delay {
+    animation: none !important;
+  }
+}

@@ -5,7 +5,7 @@ import logo from "@/assets/logo.webp";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-blue-300 bg-blue-500 shadow-md">
+    <header className="sticky top-0 z-40 w-full border-b border-blue-300 bg-blue-400 shadow-md">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
 
         {/* Logo + Name */}
@@ -51,7 +51,7 @@ export function SiteHeader() {
           </Link>
 
           <Link
-            to="/doctor-dashboard"
+            to="/doctors"
             className="rounded-lg border border-transparent px-3 py-2 text-sm font-medium text-white transition-all duration-200 hover:border-white hover:bg-white/15"
           >
             For Doctors

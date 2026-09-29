@@ -9,7 +9,8 @@ import { Badge } from "@/components/ui/badge";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 //import heroImg from "@/assets/hero-health.jpg";
-import heroImg from "@/assets/hero-home-reference.jpg";
+import heroImg from "@/assets/homepage.png";
+import heartImg from "@/assets/hero-heart.png";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -112,19 +113,76 @@ function Landing() {
     </section>
   );
 } */
-  function Hero() {
-    return (
-      <section className="relative w-full overflow-hidden bg-white">
-        <div className="relative w-full overflow-hidden">
+function Hero() {
+  return (
+    <section className="relative w-full overflow-hidden bg-white">
+      {/* Heartbeat animation – only the heart layer pulses (lub-dub) */}
+      <style>{`
+        @keyframes heart-lub-dub {
+          0%   { transform: scale(1);    filter: brightness(1); }
+          10%  { transform: scale(1.08); filter: brightness(1.15); }
+          20%  { transform: scale(1);    filter: brightness(1); }
+          30%  { transform: scale(1.05); filter: brightness(1.1); }
+          42%  { transform: scale(1);    filter: brightness(1); }
+          100% { transform: scale(1);    filter: brightness(1); }
+        }
+        .hero-heart-pulse {
+          transform-origin: 50% 56.6%;
+          animation: heart-lub-dub 1.1s ease-in-out infinite;
+          will-change: transform, filter;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .hero-heart-pulse { animation: none; }
+        }
+      `}</style>
+
+      <div className="relative w-full">
+        {/* Text block: stacked above the image on mobile, overlaid on the left on large screens */}
+        <div className="relative z-10 px-6 pb-6 pt-10 sm:px-10 lg:absolute lg:inset-y-0 lg:left-0 lg:flex lg:w-[48%] lg:items-center lg:pb-0 lg:pl-[6%] lg:pr-4 lg:pt-0">
+          <div className="max-w-xl">
+            <h1 className="font-display text-4xl leading-[1.1] tracking-tight text-slate-900 sm:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl">
+              <span className="block font-medium">Smart HealthCare with</span>
+              <span className="block font-extrabold text-primary">AI Assistance</span>
+            </h1>
+            <p className="mt-5 max-w-md text-base text-slate-600 md:text-lg lg:text-base xl:text-lg">
+              Get personalized symptom guidance, upload medical reports, connect with doctors, and track your recovery journey — all in one trusted platform.
+            </p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Button asChild size="lg" className="bg-care-gradient text-white shadow-glow hover:opacity-95">
+                <Link to="/symptom-analyzer">
+                  <MessageSquareText className="mr-2 h-5 w-5" /> Try Symptoms
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="bg-white/70 backdrop-blur">
+                <Link to="/appointment">
+                  <Calendar className="mr-2 h-5 w-5" /> Book Appointment
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Image + heart overlay (same aspect ratio as the artwork so percentages line up) */}
+        <div className="relative w-full" style={{ aspectRatio: "1672 / 941" }}>
           <img
             src={heroImg}
             alt="AI-powered healthcare with human organs and heart health monitoring"
-            className="hero-heartbeat block h-auto w-full"
+            className="absolute inset-0 h-full w-full select-none"
+            draggable={false}
+          />
+          <img
+            src={heartImg}
+            alt=""
+            aria-hidden="true"
+            draggable={false}
+            className="hero-heart-pulse pointer-events-none absolute select-none"
+            style={{ left: "64.593%", top: "12.752%", width: "26.316%", height: "56.323%" }}
           />
         </div>
-      </section>
-    );
-  }
+      </div>
+    </section>
+  );
+}
 
 function HowItWorks() {
   const steps = [
